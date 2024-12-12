@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import localforage from 'localforage';
 
-// Storage Types Enum
+
 export enum StorageType {
   LOCAL_STORAGE = 'localStorage',
   SESSION_STORAGE = 'sessionStorage',
@@ -13,7 +13,7 @@ export enum StorageType {
   NEXT_HTTP_ONLY = 'nextHttpOnly'
 }
 
-// Token Storage Interface
+
 export interface TokenStorageOptions {
   type?: StorageType;
   key?: string;
@@ -22,13 +22,13 @@ export interface TokenStorageOptions {
   httpOnly?: boolean;
 }
 
-// Vuex Store Interface (generic to work with different Vuex implementations)
+
 interface VuexStore {
   commit: (mutation: string, payload: any) => void;
   state: any;
 }
 
-// In-Memory Storage Class
+
 class InMemoryStorage {
   private static instance: InMemoryStorage;
   private storage: Map<string, any> = new Map();
@@ -59,7 +59,7 @@ class InMemoryStorage {
   }
 }
 
-// Universal Token Storage Class
+
 export class TokenStorage {
   private static DEFAULT_KEY = 'auth_token';
   private static VUEX_MUTATION = 'SET_AUTH_TOKEN';
@@ -74,7 +74,7 @@ export class TokenStorage {
     });
   }
 
-  // Token Storage Methods
+
   static async setToken(
     token: string, 
     options: TokenStorageOptions = {}
@@ -137,7 +137,7 @@ export class TokenStorage {
     }
   }
 
-  // Retrieve Token Methods
+
   static async getToken(
     options: TokenStorageOptions = {}
   ): Promise<string | null> {
@@ -187,7 +187,7 @@ export class TokenStorage {
     }
   }
 
-  // Remove Token Methods
+
   static async removeToken(
     options: TokenStorageOptions = {}
   ): Promise<void> {
